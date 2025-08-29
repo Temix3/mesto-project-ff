@@ -1,0 +1,11 @@
+@import url('./-is-hidden/popup__input-error-is-hidden.css');
+
+.popup__input-error {
+  position: absolute;
+  min-height: 2rem;
+  display: block;
+  font-size: 12px;
+  color: red;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
