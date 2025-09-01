@@ -1,5 +1,5 @@
 const id = "cohort-mag-4";
-const token = "fba60c80-5f85-4a75-940a-903fb09977b4";
+const token = "55e6f46e-3cec-4d5f-ab61-ad4b7fc255a8";
 const apiUrl = `https://nomoreparties.co/v1/${id}`;
 const baseHeaders = {
   authorization: `${token}`,
