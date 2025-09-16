@@ -1,30 +1,41 @@
+// modal.js
+
+let handleEscClose = null;
+
 // Открытие модального окна
 export const openModal = (modalElement) => {
   modalElement.classList.add("popup_is-opened");
 
-  const buttonCloseModal = modalElement.querySelector(".popup__close");
+  // Создаем и сохраняем обработчик нажатия клавиши Escape
+  handleEscClose = (event) => {
+    if (event.key === "Escape") {
+      closeModal(modalElement);
+    }
+  };
 
-  buttonCloseModal.addEventListener("click", handleClose(modalElement));
-  modalElement.addEventListener("click", handleClose(modalElement));
-  document.addEventListener("keydown", handleClose(modalElement));
-}
-
-// Обработчик закрытия модального окна
-const handleClose = modalElement => (event) => {
-  if (event.type === "keydown" && event.key !== "Escape") return;
-  else if (event.type === "click" && event.target !== event.currentTarget)
-    return;
-
-  closeModal(modalElement);
-}
+  document.addEventListener("keydown", handleEscClose);
+};
 
 // Закрытие модального окна
 export const closeModal = (modalElement) => {
   modalElement.classList.remove("popup_is-opened");
 
-  const buttonCloseModal = modalElement.querySelector(".popup__content .popup__close");
-  
-  buttonCloseModal.removeEventListener("click", handleClose(modalElement));
-  modalElement.removeEventListener("click", handleClose(modalElement));
-  document.removeEventListener("keydown", handleClose(modalElement));
-}
+  // Удаляем только обработчик Escape
+  document.removeEventListener("keydown", handleEscClose);
+  handleEscClose = null;
+};
+
+// Навешиваем глобальные слушатели на попапы
+export const setModalListeners = (modalElement) => {
+  const buttonCloseModal = modalElement.querySelector(".popup__close");
+
+  // Закрытие по кнопке
+  buttonCloseModal.addEventListener("click", () => closeModal(modalElement));
+
+  // Закрытие по клику на оверлей
+  modalElement.addEventListener("click", (event) => {
+    if (event.target === modalElement) {
+      closeModal(modalElement);
+    }
+  });
+};
