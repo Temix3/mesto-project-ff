@@ -4,6 +4,7 @@ import { openModal, closeModal } from "./components/modal";
 import { enableValidation, clearValidation } from "./utils/validation";
 import * as API from "./utils/api";
 import { enableValidation, clearValidation, validateFormOnOpen } from "./utils/validation";
+import { setModalListeners } from "./components/modal";
 
 // Включение валидации всех форм
 const validationConfig = {
@@ -109,6 +110,9 @@ buttonAddCard.addEventListener("click", () => {
   clearValidation(formAddCard, validationConfig);
   openModal(modalAddCard);
 });
+
+// Устанавливаем слушатели для всех модальных окон один раз
+[modalAddCard, modalEditProfile, modalEditAvatar, modalViewCard].forEach(setModalListeners);
 
 // Добавление карточки
 formAddCard.addEventListener("submit", (event) => {
