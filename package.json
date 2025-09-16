@@ -2,11 +2,13 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "Yandex Practicum",
+  "homepage": "https://Temix3.github.io/mesto-project-ff",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --mode production",
-    "deploy": "webpack --mode production && gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
