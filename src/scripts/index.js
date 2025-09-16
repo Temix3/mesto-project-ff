@@ -3,6 +3,7 @@ import { createCard } from "./components/card";
 import { openModal, closeModal } from "./components/modal";
 import { enableValidation, clearValidation } from "./utils/validation";
 import * as API from "./utils/api";
+import { enableValidation, clearValidation, validateFormOnOpen } from "./utils/validation";
 
 // Включение валидации всех форм
 const validationConfig = {
@@ -88,7 +89,9 @@ Promise.all([API.getUser(), API.getCards()])
 buttonEditProfile.addEventListener("click", () => {
   inputNameProfileForm.value = nameProfile.textContent;
   inputDescriptionProfileForm.value = descriptionProfile.textContent;
+
   clearValidation(formEditProfile, validationConfig);
+  validateFormOnOpen(formEditProfile, validationConfig); // <-- добавил здесь
   openModal(modalEditProfile);
 });
 
