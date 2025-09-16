@@ -1,7 +1,6 @@
 import "../pages/index.css";
 import { createCard } from "./components/card";
 import { openModal, closeModal } from "./components/modal";
-import { enableValidation, clearValidation } from "./utils/validation";
 import * as API from "./utils/api";
 import { enableValidation, clearValidation, validateFormOnOpen } from "./utils/validation";
 import { setModalListeners } from "./components/modal";
