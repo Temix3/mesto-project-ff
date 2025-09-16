@@ -1,0 +1,21 @@
+image: node:20
+
+stages:
+  - deploy
+
+deploy_to_github_pages:
+  stage: deploy
+  script:
+    - npm ci
+    - npm run build
+    - cd dist
+    - git init
+    - git config user.email "$CI_GIT_EMAIL"
+    - git config user.name "$CI_GIT_NAME"
+    - git remote add origin https://$GH_TOKEN@github.com/Temix3/mesto-project-ff.git
+    - git checkout -b gh-pages
+    - git add .
+    - git commit -m "Deploy from GitLab CI"
+    - git push --force origin gh-pages
+  only:
+    - main
